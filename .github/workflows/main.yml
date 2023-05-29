@@ -1,10 +1,10 @@
-﻿name: Deploy 😎
+﻿name: Build and Deploy 😎
 
 on: [push, pull_request]
 
 jobs:
   build:
-    name: Build my project ✨
+    name: Build
     runs-on: ubuntu-latest
     steps:
       # Checkout
@@ -21,14 +21,6 @@ jobs:
           restore-keys: |
             Library-
 
-      # Test
-#      - name: Run tests
-#        uses: game-ci/unity-test-runner@v2
-#        env:
-#          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-#        with:
-#          githubToken: ${{ secrets.GITHUB_TOKEN }}
-
       # Build
       - name: Build project
         uses: game-ci/unity-builder@v2
@@ -44,3 +36,14 @@ jobs:
         with:
           name: Build
           path: build
+
+      - name: Download Artifact
+        uses: actions/download-artifact@v2
+        with: 
+          name: Build
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with: 
+          branch: gh-deploy
+          folder: ./WebGL/WebGL
