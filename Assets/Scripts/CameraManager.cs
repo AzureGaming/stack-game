@@ -11,11 +11,11 @@ public class CameraManager : MonoBehaviour {
     }
 
     private void OnEnable() {
-        Box.onPlace += UpdatePos;
+        ObjController.onUpdateCam += UpdatePos;
     }
 
     private void OnDisable() {
-        Box.onPlace -= UpdatePos;
+        ObjController.onUpdateCam -= UpdatePos;
     }
 
     private void Start() {

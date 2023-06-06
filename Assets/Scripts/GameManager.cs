@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour {
 
     public bool canDrop;
     public int score = 0;
+    public List<GameObject> placedObjs;
 
     [SerializeField]
     float timeout = 5f;
@@ -20,12 +21,12 @@ public class GameManager : MonoBehaviour {
     bool processedGameOver;
 
     private void OnEnable() {
-        Box.onPlace += UpdateLatestPlacement;
+        ObjController.onPlace += HandlePlaced;
         Dropper.onDropped += Dropped;
     }
 
     private void OnDisable() {
-        Box.onPlace -= UpdateLatestPlacement;
+        ObjController.onPlace -= HandlePlaced;
         Dropper.onDropped -= Dropped;
     }
 
@@ -42,7 +43,7 @@ public class GameManager : MonoBehaviour {
 
         if (timer > 0f && isTimerEnabled) {
             timer -= Time.deltaTime;
-            Box box = currentDropped.GetComponent<Box>();
+            ObjController box = currentDropped.GetComponent<ObjController>();
             if (box.isLastPlaced) {
                 isTimerEnabled = false;
             }
@@ -51,15 +52,17 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    void UpdateLatestPlacement(GameObject ins) {
+    void HandlePlaced(GameObject ins) {
         score++;
 
-        Box[] boxes = FindObjectsOfType<Box>();
-        Box boxToPlace = ins.GetComponent<Box>();
+        placedObjs.Add(ins);
+
+        ObjController objToPlace = ins.GetComponent<ObjController>();
         canDrop = true;
 
-        boxes.ToList().ForEach(box => {
-            box.isLastPlaced = box == boxToPlace;
+        placedObjs.ForEach(obj => {
+            bool isObjLastPlaced = obj == ins;
+            obj.GetComponent<ObjController>().isLastPlaced = isObjLastPlaced;
         });
     }
 
@@ -81,5 +84,6 @@ public class GameManager : MonoBehaviour {
         isTimerEnabled = false;
         processedGameOver = false;
         score = 0;
+        placedObjs = new List<GameObject>();
     }
 }

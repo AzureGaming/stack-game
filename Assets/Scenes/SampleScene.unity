@@ -150,7 +150,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 368121044}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.25918862, y: 0.23196185, z: -0.066035815}
+  m_LocalPosition: {x: -0.25918862, y: 0, z: -0.066035815}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -183,6 +183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canDrop: 1
   score: 0
+  placedObjs: []
   timeout: 5
 --- !u!114 &368121048
 MonoBehaviour:
@@ -597,7 +598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 863e6cb7579d101439ad3d4cd026531b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objToDrop: {fileID: 172222119127284176, guid: ed724cb24bf136d4e84077a89d611409, type: 3}
+  objToDrop: {fileID: 6361189228347159405, guid: 41687f4045b714846af61170d1b01a68, type: 3}
 --- !u!1 &1164528363
 GameObject:
   m_ObjectHideFlags: 0
@@ -678,7 +679,7 @@ Transform:
   m_GameObject: {fileID: 1164528363}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.05, y: -4.91, z: 0}
-  m_LocalScale: {x: 3.2226892, y: 0.27794552, z: 1}
+  m_LocalScale: {x: 28.026518, y: 0.78806335, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
